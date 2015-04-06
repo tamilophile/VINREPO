@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<title>Stocks</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<script src="js/angular.min.js"></script>
+<script src="getColumn.js"></script>
+</head>
+<body ng-controller="columnWriteCtrl">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Column</td>
+				<td>Type</td>
+			</tr>
+		</thead>
+		<tr ng-repeat="column in columns">
+			<td>{{column.name}}</td>
+			<td>{{column.type}}</td>
+		</tr>
+	</table>
+</body>
+</html>
