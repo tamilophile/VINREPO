@@ -3,6 +3,7 @@ package com.db.column;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,7 +21,7 @@ public class Query implements Serializable
   @XmlAttribute(name = "id")
   String id;
   @XmlAttribute(name = "query")
-  Blob query;
+  String query;
   @XmlAttribute(name = "colsHighlight")
   String colsHighlight;
   @XmlAttribute(name = "createdBy")
@@ -43,7 +44,7 @@ public class Query implements Serializable
   {
     return query;
   }
-  public void setQuery(Blob blob)
+  public void setQuery(String blob)
   {
     this.query = blob;
   }

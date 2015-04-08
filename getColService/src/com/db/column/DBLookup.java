@@ -1,5 +1,6 @@
 package com.db.column;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,8 +13,6 @@ import java.util.List;
 public class DBLookup
 {
   public Connection con = null;
-  private Statement stmt = null;
-  public ResultSet res = null;
   /**
    * 
    * @return
@@ -57,6 +56,7 @@ public class DBLookup
       System.out.println(col.getName() + "...." + col.getType());
       cols.add(col);
     }
+    rs.close();
     return cols;
   }
   /**
@@ -81,8 +81,10 @@ public class DBLookup
       sc.setCreatedOn(rs.getDate(6));
       sc.setAlteredBy(rs.getString(7));
       sc.setAlteredOn(rs.getDate(8));
+      System.out.println(sc.getTagIdCol() + "...." + sc.getScenarioName());
       scenarios.add(sc);
     }
+    rs.close();
     return scenarios;
   }
   /**
@@ -100,14 +102,19 @@ public class DBLookup
     {
       Query q = new Query();
       q.setId("" + rs.getInt(1));
-      q.setQuery(rs.getBlob(2));
+      Blob blob = rs.getBlob(2);
+      byte[] bdata = blob.getBytes(1, (int) blob.length());
+      String blb = new String(bdata);
+      q.setQuery(blb);
       q.setColsHighlight(rs.getString(3));
       q.setCreatedBy(rs.getString(4));
       q.setCreatedOn(rs.getDate(5));
       q.setAlteredBy(rs.getString(6));
       q.setAlteredOn(rs.getDate(7));
+      System.out.println(q.getColsHighlight() + "..." + q.getQuery());
       queries.add(q);
     }
+    rs.close();
     return queries;
   }
   /**
@@ -117,9 +124,6 @@ public class DBLookup
   {
     try
     {
-      if(res != null)
-        res.close();
-      stmt.close();
       con.close();
     }
     catch (SQLException e)
@@ -137,6 +141,8 @@ public class DBLookup
     try
     {
       db.getTableDesc("stock");
+      db.getQuery("1");
+      db.getScenario("1");
     }
     catch (Exception e)
     {
