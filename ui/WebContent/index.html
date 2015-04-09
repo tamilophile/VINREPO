@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<title>restAng</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<script src="js/angular.min.js"></script>
+<script src="getColumn.js"></script>
+</head>
+<body>
+	<!-- <table ng-controller="columnWriteCtrl" class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Column</td>
+				<td>Type</td>
+			</tr>
+		</thead>
+		<tr ng-repeat="column in columns">
+			<td>{{column.name}}</td>
+			<td>{{column.type}}</td>
+		</tr>
+	</table> -->
+	
+	<input type="text" ng-model="nameFilter" placeholder="Search..."/>
+	
+	<table ng-controller="scenarioCtrl" class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Scenario Name</td>
+			</tr>
+		</thead>
+		<tr ng-repeat="scenario in scenarios | filter: nameFilter ">
+			<td>{{scenario.queryId}}</td>
+			<td>{{scenario.scenarioName}}</td>
+		</tr>
+	</table>
+	<table ng-controller="queryCtrl" class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Column</td>
+				<td>Type</td>
+			</tr>
+		</thead>
+		<tr ng-repeat="query in queries">
+			<td>{{query.id}}</td>
+			<td>{{query.query}}</td>
+		</tr>
+	</table>
+</body>
+</html>
