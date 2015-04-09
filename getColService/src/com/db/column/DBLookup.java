@@ -65,11 +65,11 @@ public class DBLookup
    * @return
    * @throws SQLException
    */
-  public List<Scenario> getScenario(String id) throws SQLException
+  public List<Scenario> getScenario() throws SQLException
   {
     List<Scenario> scenarios = new ArrayList<Scenario>();
     Statement stmt = getCon().createStatement();
-    ResultSet rs = stmt.executeQuery("select * from scenario where scenario_id=" + id);
+    ResultSet rs = stmt.executeQuery("select * from scenario where scenario_id");
     while (rs.next())
     {
       Scenario sc = new Scenario();
@@ -142,7 +142,7 @@ public class DBLookup
     {
       db.getTableDesc("stock");
       db.getQuery("1");
-      db.getScenario("1");
+      db.getScenario();
     }
     catch (Exception e)
     {

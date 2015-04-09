@@ -37,7 +37,7 @@ public class JSONService
     DBLookup db = new DBLookup();
     try
     {
-      scrs.addAll(db.getScenario("1"));
+      scrs.addAll(db.getScenario());
     }
     catch (Exception e)
     {
