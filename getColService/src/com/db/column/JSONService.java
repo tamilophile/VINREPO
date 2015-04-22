@@ -31,7 +31,7 @@ public class JSONService
   @GET
   @Path("/getScenario")
   @Produces("application/json")
-  public Response getScenario()
+  public Response getScenario(String searchScenario)
   {
     List<Scenario> scrs = new ArrayList<Scenario>();
     DBLookup db = new DBLookup();

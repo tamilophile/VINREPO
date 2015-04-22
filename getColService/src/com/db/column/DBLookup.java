@@ -69,7 +69,7 @@ public class DBLookup
   {
     List<Scenario> scenarios = new ArrayList<Scenario>();
     Statement stmt = getCon().createStatement();
-    ResultSet rs = stmt.executeQuery("select * from scenario where scenario_id");
+    ResultSet rs = stmt.executeQuery("select * from scenario");
     while (rs.next())
     {
       Scenario sc = new Scenario();
@@ -81,7 +81,7 @@ public class DBLookup
       sc.setCreatedOn(rs.getDate(6));
       sc.setAlteredBy(rs.getString(7));
       sc.setAlteredOn(rs.getDate(8));
-      System.out.println(sc.getTagIdCol() + "...." + sc.getScenarioName());
+      // System.out.println(sc.getTagIdCol() + "...." + sc.getScenarioName());
       scenarios.add(sc);
     }
     rs.close();

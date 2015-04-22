@@ -1,50 +1,15 @@
 <!doctype html>
-<html ng-app="myApp">
+<html ng-app="ui.bootstrap.demo">
 <head>
-<title>restAng</title>
-<link rel="stylesheet" href="css/bootstrap.css">
 <script src="js/angular.min.js"></script>
-<script src="getColumn.js"></script>
+<script src="js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+<script src="js/getColumn.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-	<!-- <table ng-controller="columnWriteCtrl" class="table table-bordered">
-		<thead>
-			<tr>
-				<td>Column</td>
-				<td>Type</td>
-			</tr>
-		</thead>
-		<tr ng-repeat="column in columns">
-			<td>{{column.name}}</td>
-			<td>{{column.type}}</td>
-		</tr>
-	</table> -->
-	
-	<input type="text" ng-model="nameFilter" placeholder="Search..."/>
-	
-	<table ng-controller="scenarioCtrl" class="table table-bordered">
-		<thead>
-			<tr>
-				<td>Id</td>
-				<td>Scenario Name</td>
-			</tr>
-		</thead>
-		<tr ng-repeat="scenario in scenarios | filter: nameFilter ">
-			<td>{{scenario.queryId}}</td>
-			<td>{{scenario.scenarioName}}</td>
-		</tr>
-	</table>
-	<table ng-controller="queryCtrl" class="table table-bordered">
-		<thead>
-			<tr>
-				<td>Column</td>
-				<td>Type</td>
-			</tr>
-		</thead>
-		<tr ng-repeat="query in queries">
-			<td>{{query.id}}</td>
-			<td>{{query.query}}</td>
-		</tr>
-	</table>
+<body >
+	<div ng-controller="TypeaheadCtrl">
+	<input type="text" class="form-control" ng-model="selected" typeahead="scenario as scenario.scenarioName for scenario in data | filter:{scenarioName:$viewValue}">
+	<pre>{{ selected.id }}</pre>
+	</div>
 </body>
 </html>
