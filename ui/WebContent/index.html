@@ -6,10 +6,21 @@
 <script src="js/getColumn.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body >
+<body>
 	<div ng-controller="TypeaheadCtrl">
-	<input type="text" class="form-control" ng-model="selected" typeahead="scenario as scenario.scenarioName for scenario in data | filter:{scenarioName:$viewValue}">
-	<pre>{{ selected.id }}</pre>
+		<input type="text" class="form-control" ng-model="selectedScenario"
+			typeahead="scenario as scenario.scenarioName for scenario in scenarios | filter:{scenarioName:$viewValue}" />
+
+		<div class="btn-group" dropdown is-open="status.isopen">
+			<button type="button" class="btn btn-default dropdown-toggle"
+				dropdown-toggle ng-disabled="disabled">
+				Carrier <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li ng-repeat="carrier in carriers"><a
+					ng-click="$parent.current = carrier">{{carrier.carrierName}}</a></li>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>

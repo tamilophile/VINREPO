@@ -8,16 +8,20 @@ angular
 					$scope.selected = undefined;
 					// Any function returning a promise object can be used to
 					// load values asynchronously
-					$http.get(
-							'http://localhost:8080/getColService/rest/service/getScenario')
-					.then(function(response) {
-						$scope.data = response.data;
-						console.log($scope.data);
-					});
-//					
-//					$scope.filterbyscenaioname = function() {
-//						return $scope.data.map(function(item){
-//					        return item.scenarioName;
-//					      });
-//					};
+					$http
+							.get(
+									'http://localhost:8080/getColService/rest/service/getScenario')
+							.then(function(response) {
+								$scope.scenarios = response.data;
+								console.log($scope.scenarios);
+							});
+
+					$http
+							.get(
+									'http://localhost:8080/getColService/rest/service/getCarrier')
+							.then(function(response) {
+								$scope.carriers = response.data;
+								console.log($scope.carriers);
+							});
+
 				});
